@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz do Projeto</title>
+    <link rel="shortcut icon" href="midias/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .question {
+            margin: 20px 0;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer{
+
+            position: relative;
+            text-align: center;
+            font-style: italic;
+            padding: 10px 0;
+            width: 100%;
+            background: #333;
+            color: white;
+            bottom: 0;
+        }
+        .btn{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 style="color: white ; padding: 10px 0; text-align: center; background-color: #4caf50;">Quiz: Você usa muita tela?</h1>
+    
+        <form id="quizForm">
+            <!-- Pergunta 1 -->
+            <div class="question">
+                <label>1. Quantas horas por dia você passa em frente a telas (celular, computador, TV)?</label>
+                <input type="radio" name="q1" value="1"> Menos de 2 horas <br>
+                <input type="radio" name="q1" value="2"> De 2 a 4 horas <br>
+                <input type="radio" name="q1" value="3"> De 4 a 6 horas <br>
+                <input type="radio" name="q1" value="4"> Mais de 6 horas
+            </div>
+    
+            <!-- Pergunta 2 -->
+            <div class="question">
+                <label>2. Você sente desconforto nos olhos após usar dispositivos por um longo período?</label>
+                <input type="radio" name="q2" value="1"> Nunca <br>
+                <input type="radio" name="q2" value="2"> Raramente <br>
+                <input type="radio" name="q2" value="3"> Às vezes <br>
+                <input type="radio" name="q2" value="4"> Frequentemente
+            </div>
+    
+            <!-- Pergunta 3 -->
+            <div class="question">
+                <label>3. Você usa dispositivos eletrônicos antes de dormir?</label>
+                <input type="radio" name="q3" value="1"> Nunca <br>
+                <input type="radio" name="q3" value="2"> Raramente <br>
+                <input type="radio" name="q3" value="3"> Às vezes <br>
+                <input type="radio" name="q3" value="4"> Sempre
+            </div>
+    
+            <!-- Pergunta 4 -->
+            <div class="question">
+                <label>4. Você já sentiu que o uso de dispositivos interfere no seu convívio social ou familiar?</label>
+                <input type="radio" name="q4" value="1"> Nunca <br>
+                <input type="radio" name="q4" value="2"> Raramente <br>
+                <input type="radio" name="q4" value="3"> Às vezes <br>
+                <input type="radio" name="q4" value="4"> Frequentemente
+            </div>
+    
+            <!-- Pergunta 5 -->
+            <div class="question">
+                <label>5. Quando você não está usando dispositivos, sente vontade de checar notificações ou mexer no celular?</label>
+                <input type="radio" name="q5" value="1"> Nunca <br>
+                <input type="radio" name="q5" value="2"> Raramente <br>
+                <input type="radio" name="q5" value="3"> Às vezes <br>
+                <input type="radio" name="q5" value="4"> Sempre
+            </div>
+    
+            <button type="button" onclick="calculateResult()">Ver Resultado</button>
+        </form>
+    
+        <div id="result" class="result"></div>
+    </div>
+    <p style="text-align: center;"><a href="index.html" class="btn" target="_blank" rel="Prev">VOLTAR</a></p>
+    <footer>
+        <p>&copy;Projeto PIPA-2024</p>
+    </footer>
+    <script>
+        function calculateResult() {
+            var form = document.forms['quizForm'];
+            var score = 0;
+    
+            for (var i = 1; i <= 5; i++) {
+                var question = form['q' + i];
+                for (var j = 0; j < question.length; j++) {
+                    if (question[j].checked) {
+                        score += parseInt(question[j].value);
+                    }
+                }
+            }
+    
+            var resultText = '';
+    
+            if (score <= 7) {
+                resultText = 'Parabéns! Você tem um uso saudável de telas.';
+            } else if (score <= 13) {
+                resultText = 'Cuidado! Você está caminhando para o uso excessivo de telas.';
+            } else {
+                resultText = 'Atenção! Seu uso de telas está muito elevado. Considere reduzir para melhorar sua saúde.';
+            }
+    
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>    
